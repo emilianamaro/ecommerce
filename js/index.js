@@ -1,14 +1,13 @@
-document.addEventListener("DOMContentLoaded", function(){
-    document.getElementById("autos").addEventListener("click", function() {
-        localStorage.setItem("catID", 101);
-        window.location = "products.html"
-    });
-    document.getElementById("juguetes").addEventListener("click", function() {
-        localStorage.setItem("catID", 102);
-        window.location = "products.html"
-    });
-    document.getElementById("muebles").addEventListener("click", function() {
-        localStorage.setItem("catID", 103);
-        window.location = "products.html"
-    });
+let email = document.getElementById("email");
+let contraseña = document.getElementById("contraseña");
+let ingresar = document.getElementById("ingresar");
+
+ingresar.addEventListener("click", () => {
+
+    if (email.value != null  && contraseña.value != null) {
+        console.log("entro al if");
+        window.location.href = "";
+    } else {
+        console.log("entro al else");
+    }
 });
