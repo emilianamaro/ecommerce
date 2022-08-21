@@ -189,3 +189,31 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.campos {
+  padding: 10px;
+  background-color: #e6ff8c;
+  text-align: center;
+  border: none;
+}
+.txt {
+  margin-top: 15px;
+}
+
+.btn {
+  margin: 15px;
+  border: none;
+  color: white;
+  background-color: #0087F7;
+  font-size: large;
+}
+
+.inicio {
+  font-weight: bold;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+}
+
+.title-products {
+  text-align: center;
+  margin: 20px;
+}

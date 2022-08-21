@@ -2,12 +2,10 @@ let email = document.getElementById("email");
 let contraseña = document.getElementById("contraseña");
 let ingresar = document.getElementById("ingresar");
 
-ingresar.addEventListener("click", () => {
-
-    if (email.value != null  && contraseña.value != null) {
-        console.log("entro al if");
-        window.location.href = "";
+ingresar.addEventListener("click", function() {
+    if (email.value.length >= 1 && contraseña.value.length >= 1) {
+        window.location = "main.html"
     } else {
-        console.log("entro al else");
+        alert("Ingrese todos los datos para iniciar sesión.")
     }
 });
