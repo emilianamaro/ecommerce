@@ -19,9 +19,9 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
+        <ul class="navbar-nav w-100 justify-content-between align-items-center">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link" href="main.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
@@ -30,6 +30,15 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="userId" data-bs-toggle="dropdown" aria-expanded="false">
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href=".cart.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" href="./my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="./index.html" onclick="signOff()">Cerrar sesión</a></li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
@@ -37,8 +46,59 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="d-flex justify-content-center m-5">
+        <h1>Carrito de compras</h1>
+      </div>
+      <div>
+        <h3>Artículos a comprar</div> <br>
+        <div class="row">
+            <div class="col-2 m-3">
+            </div>
+            <div class="col-2">
+                <h6><b>Nombre</b></h5>
+            </div>
+            <div class="col-2">
+                <h6><b>Costo</b></h5>
+            </div>
+            <div class="col-2">
+                <h6><b>Cantidad</b></h5>
+            </div>
+            <div class="col-2">
+                <h6><b>Subtotal</b></h5>
+            </div>
+        </div><hr size="4px">
+        <div id="container">
+
+        </div>
+        <div>
+          <h3>Tipo de envío</h3> <br>
+          <form>
+              <div>
+                  <input type="radio" id="premium" name="ship">
+                  <label for="premium">Premium 2 a 5 días (15%)</label> <br>
+                  <input type="radio" id="express" name="ship">
+                  <label for="express">Express 5 a 8 días (7%)</label> <br>
+                  <input type="radio" id="standard" name="ship">
+                  <label for="standard">Estandard 12 a 15 días (5%)</label>
+              </div>
+          </form> <br>
+          <h3>Dirección de envío</h3> <br>
+          <form>
+              <div class="row">
+                  <div class="col-6">
+                      <label for="street">Calle</label><br>
+                      <input type="text" id="street" size="60">
+                  </div>
+                  <div class="col-4">
+                      <label for="number">Número</label><br>
+                      <input type="text" id="number" size="20">
+                  </div>
+              </div><br>
+              <div>
+                  <label for="edge">Esquina</label><br>
+                  <input type="text" id="edge" size="40">
+              </div>
+          </form><br><hr>
       </div>
     </div>
   </main>

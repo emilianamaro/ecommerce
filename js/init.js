@@ -6,6 +6,12 @@ const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/prod
 const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
+const GET_PRODUCTS_URL = PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE;
+const GET_PRODUCTLIST_URL = PRODUCT_INFO_URL + localStorage.getItem("productID") + EXT_TYPE;
+const GET_PRODUCTCOMMENT_URL = PRODUCT_INFO_COMMENTS_URL+ localStorage.getItem("productID") + EXT_TYPE;
+const GET_CART_INFO_URL = CART_INFO_URL + localStorage.getItem("cartID") + EXT_TYPE;
+
+document.getElementById("userId").innerHTML = localStorage.getItem("userId");
 
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -38,4 +44,12 @@ let getJSONData = function(url){
         hideSpinner();
         return result;
     });
+}
+
+function signOff() {
+  localStorage.clear();
+} 
+
+function setCartId(id) {
+  localStorage.setItem("cartID", id);
 }
