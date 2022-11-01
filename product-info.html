@@ -46,7 +46,34 @@
     </div>
   </nav>
   <main>
-    <div class="container" id="container">
+    <div class="container">
+      <div>
+        <div class="row">
+          <div class="col"><br>
+            <div id="container">
+            </div>
+            <div>
+              <h3><b>Comentar</b></h3>
+              <h4 class="mb-1">Tu opinión:</h4>
+              <textarea name="comment" rows="5" cols="80" id="textComment"></textarea>
+              <h4 class="mb-1">Tu puntuación:</h4>
+              <select name="score" id="score">
+                <option value="select" autofocus>Seleccione su puntuación</option>
+                <option value="one">1 (más baja)</option>
+                <option value="two">2</option>
+                <option value="three">3</option>
+                <option value="four">4</option>
+                <option value="five">5 (más alta)</option>
+              </select> <br>
+              <button class="btn btn-primary btn-lg" type="submit" onclick="postComment()">Enviar</button>
+            </div> <br>
+            <div>
+              <h3><b>Productos relacionados</b></h3> <br>
+              <div class="row" id="relatedProducts">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>

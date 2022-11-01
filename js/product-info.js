@@ -4,65 +4,47 @@ let productComments = [];
 let imageList = "";
 let contComment = "";
 let relatedProducts = "";
+let cartInfo = [];
+let shopList = JSON.parse(localStorage.getItem("newProduct"));
 
 
 function showProductInfo () {
     let containerInfo = 
-    `<div "class="list-group-item list-group-item-action cursor-active">
-        <div class="row">
-            <div class="col"><br>
-            <h1 class="mb-1 text-center p-4">${productInfo.name}</h1> <hr> <br>
-                <div>
-                    <h3><b>Precio</b></h3>
-                    <h4 class="mb-1">${productInfo.currency} ${productInfo.cost}</h4>
-                </div> <br>
-                <div>
-                    <h3><b>Descripción</b></h3>
-                    <h4 class="mb-1">${productInfo.description}</h4>
-                </div> <br>
-                <div>
-                    <h3><b>Categoría</b></h3>
-                    <h4 class="mb-1">${productInfo.category}</h4>
-                </div> <br>
-                <div>
-                    <h3><b>Cantidad de vendidos</b></h3>
-                    <h4 class="mb-1">${productInfo.soldCount}</h4>
-                </div> <br>
-                <div>
-                    <h3><b>Imágenes ilustrativas</b></h3>
-                    <div class="row">
-                    ${imageList}
-                    </div>
-                </div>
-                <div>
-                    <h3><b>Comentarios</b></h3>
-                    <ul class="list-group">
-                        ${contComment}
-                    </ul>
-                </div> <br>
-                <div>
-                    <h3><b>Comentar</b></h3>
-                    <h4 class="mb-1">Tu opinión:</h4>
-                    <textarea name="comment" rows="5" cols="80" id="textComment"></textarea>
-                    <h4 class="mb-1">Tu puntuación:</h4>
-                    <select name="score" id="score">
-                        <option value="select" autofocus>Seleccione su puntuación</option>
-                        <option value="one">1 (más baja)</option>
-                        <option value="two">2</option>
-                        <option value="three">3</option>
-                        <option value="four">4</option>
-                        <option value="five">5 (más alta)</option>
-                    </select> <br>
-                    <button class="btn btn-primary btn-lg" type="submit" onclick="postComment()">Enviar</button>
-                </div> <br>
-                <div>
-                    <h3><b>Productos relacionados</b></h3> <br>
-                    <div class="row" id="relatedProducts">
-                    </div>
-                </div>
+    `
+        <div class="row justify-content-between">
+            <h1 class="mb-1 p-4 col-4">${productInfo.name}</h1>
+            <button type="button" class="btn btn-primary col-2" onclick="comprar()"><b>Comprar</b></button>
+        </div>
+        <hr> <br>
+        <div>
+            <h3><b>Precio</b></h3>
+            <h4 class="mb-1">${productInfo.currency} ${productInfo.cost}</h4>
+        </div> <br>
+        <div>
+            <h3><b>Descripción</b></h3>
+            <h4 class="mb-1">${productInfo.description}</h4>
+        </div> <br>
+        <div>
+            <h3><b>Categoría</b></h3>
+            <h4 class="mb-1">${productInfo.category}</h4>
+        </div> <br>
+        <div>
+            <h3><b>Cantidad de vendidos</b></h3>
+            <h4 class="mb-1">${productInfo.soldCount}</h4>
+        </div> <br>
+        <div>
+            <h3><b>Imágenes ilustrativas</b></h3>
+            <div class="row">
+                ${imageList}
             </div>
         </div>
-    </div>`;
+        <div>
+            <h3><b>Comentarios</b></h3>
+            <ul class="list-group">
+                ${contComment}
+            </ul>
+        </div> <br>
+    `;
     container.innerHTML = containerInfo;
     
 }
@@ -71,57 +53,24 @@ function showComments () {
     contComment = "";
     for (let comment of productComments) {
         let score = "";
-        if (comment.score === 1) {
-            score = `
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            `;
-        } else if (comment.score === 2) {
-            score = `
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            `;
-        } else if (comment.score === 3) {
-            score = `
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            `;
-        } else if (comment.score === 4) {
-            score = `
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            `;         
-        } else if (comment.score === 5) {
-            score = `
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            `;
+        if(comment.score == 5) {
+            for(let i = 0; i < 5; i++){
+                score += `
+                <span class="fa fa-star checked"></span>
+                `;
+            }
         } else {
-            score = `
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            `;
+            for(let i = 0; i < comment.score; i++){
+                score += `
+                    <span class="fa fa-star checked"></span>
+                `;
+            }
+            for(let i = comment.score; i < 5; i++) {
+                score += `
+                    <span class="fa fa-star"></span>
+                `;
+            }
         }
-
-        
 
         if (productComments.length > 0) {
             contComment += `
@@ -165,14 +114,18 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>`;
         }
         showProductInfo();
-
-       
-        
     });
     getJSONData(GET_PRODUCTCOMMENT_URL).then(function(resultObj){
         productComments = resultObj.data;
         showComments();
     });
+    if(!shopList){
+        //si no está el carrito cargado en el local lo cargo
+        getJSONData(GET_CART_INFO_URL).then((resultObj)=>{
+            cartInfo = resultObj.data.articles;
+            localStorage.setItem("newProduct", JSON.stringify(cartInfo));
+        });
+    }
 });
 
 
@@ -222,4 +175,29 @@ function showRelatedProducts () {
 function setProductID (id) {
     localStorage.setItem("productID", id);
     window.location = "product-info.html";
+}
+
+function comprar() {
+    //traigo el carrito del local y ejecuto mensaje al usuario
+    let shopList = JSON.parse(localStorage.getItem("newProduct"));
+    let txtCount = prompt(`¿Qué cantidad de ${productInfo.name} desea comprar?`, "");
+    let count = parseInt(txtCount);
+
+    if(!count){
+        //si no ingresa una cantidad le pido que lo haga
+        alert("Ingrese la cantidad para agregar al carrito.");
+    } else {
+        //si ingresa una cantidad, añado el producto al carrito
+        shopList.push(
+            {"count": count,
+            "currency": productInfo.currency,
+            "id": productInfo.id,
+            "image": productInfo.images[0],
+            "name": productInfo.name,
+            "unitCost": productInfo.cost}
+        );
+        alert(`Añadió ${count} ${productInfo.name} a su carrito.`);
+    }
+    //setteo el carrito en el local
+    localStorage.setItem("newProduct", JSON.stringify(shopList));
 }
